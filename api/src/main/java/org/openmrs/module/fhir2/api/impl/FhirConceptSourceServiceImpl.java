@@ -33,7 +33,8 @@ import org.springframework.stereotype.Component;
 public class FhirConceptSourceServiceImpl implements FhirConceptSourceService {
 	
 	@Getter(value = AccessLevel.PROTECTED)
-	@Setter(value = AccessLevel.PROTECTED, onMethod_ = { @Autowired, @VisibleForTesting })
+
+	@Setter(value = AccessLevel.PUBLIC, onMethod_ = { @Autowired, @VisibleForTesting })
 	private FhirConceptSourceDao dao;
 	
 	@Override
