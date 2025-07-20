@@ -53,7 +53,7 @@
     <bean id="fhirConceptSourceService" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
         <property name="transactionManager" ref="transactionManager" />
         <property name="target">
-            <bean class="org.openmrs.module.fhir2.api.impl.FhirConceptSourceServiceImpl"/>
+            <bean class="org.openmrs.module.fhir2.api.impl.FhirConceptSourceServiceImpl" depends-on="fhirConceptSourceDaoImpl"/>
         </property>
         <property name="preInterceptors" ref="serviceInterceptors" />
         <property name="transactionAttributeSource">
@@ -73,7 +73,7 @@
     <bean id="conceptTranslator" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
         <property name="transactionManager" ref="transactionManager" />
         <property name="target">
-            <bean class="org.openmrs.module.fhir2.api.translators.impl.ConceptTranslatorImpl"/>
+            <bean class="org.openmrs.module.fhir2.api.translators.impl.ConceptTranslatorImpl" depends-on="fhirConceptSourceService,fhirConceptServiceImpl"/>
         </property>
         <property name="preInterceptors" ref="serviceInterceptors" />
         <property name="transactionAttributeSource">
